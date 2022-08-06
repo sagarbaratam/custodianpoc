@@ -10,11 +10,17 @@ pipeline {
       steps {
         script {
         sh script: """
-                   python3 -m venv custodian
-                   source custodian/bin/activate
-                   pip install c7n
-                   pip install c7n-org
-
+                   yum install python37 -y
+                   yum install python-pip -y
+                   yum install git -y
+                   pip install botocore –upgrade
+                   pip install boto3 –upgrade
+                   git clone https://github.com/capitalone/cloud-custodian
+                   cd cloud-custodian
+                   make install
+                   source bin/activate
+                   cd tools/c7n_org
+                   python setup.py develop
                    """
         }
       }
