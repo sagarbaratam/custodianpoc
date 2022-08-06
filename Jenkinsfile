@@ -10,6 +10,7 @@ pipeline {
       steps {
         script {
         sh script: """
+                   sudo su -
                    yum install python37 -y
                    yum install python-pip -y
                    yum install git -y
