@@ -31,14 +31,14 @@ pipeline {
       }
     }
     stage('dryrun') {
-            steps {
-              sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml --dryrun'
-            }
+      steps {
+        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml --dryrun'
+      }
     }
     stage('run') {
-            steps {
-              sh 'c7n-org run -c accounts-test.yml -s output -u  cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml'
-            }
+      steps {
+        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml'
+      }
     }
     // stage('clean-old-functions') {
     //         steps {
