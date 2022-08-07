@@ -19,14 +19,19 @@ pipeline {
                    #make install
                    #cd tools/c7n_org
                    #/home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
-                  sudo  /home/ec2-user/venvs/my_venv custodian -h
+                   source my_venv activate
+                   /home/ec2-user/venvs/my_venv custodian -h
+                   deactivate
                    """
         }
       }
     }
     stage('Validate') {
       steps {
-        sh '/home/ec2-user/venvs/my_venv custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
+        sh """
+         source my_venv activate
+        /home/ec2-user/venvs/my_venv custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml
+        """
       }
     }
     stage('dryrun') {
