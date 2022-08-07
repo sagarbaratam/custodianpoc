@@ -17,17 +17,16 @@ pipeline {
                    git clone https://github.com/capitalone/cloud-custodian
                    cd cloud-custodian
                    make install
-                   source bin/activate
                    cd tools/c7n_org
-                   python setup.py develop
-                   custodian -h
+                   $PYTHON_INTERPRETER setup.py develop
+                   $VENV_PATH custodian -h
                    """
         }
       }
     }
     stage('Validate') {
       steps {
-        sh 'custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
+        sh '$VENV_PATH custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
       }
     }
     stage('dryrun') {
