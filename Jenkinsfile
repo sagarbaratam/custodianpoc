@@ -18,7 +18,7 @@ pipeline {
                    cd cloud-custodian
                    #make install
                    #cd tools/c7n_org
-                   #/home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
+                   /home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
                    source my_venv activate
                    /home/ec2-user/venvs/my_venv custodian -h
                    deactivate
