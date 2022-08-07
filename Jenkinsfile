@@ -19,7 +19,7 @@ pipeline {
                    #make install
                    #cd tools/c7n_org
                    #/home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
-                   /home/ec2-user/venvs/my_venv custodian -h
+                  sudo  /home/ec2-user/venvs/my_venv custodian -h
                    """
         }
       }
