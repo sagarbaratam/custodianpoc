@@ -10,7 +10,6 @@ pipeline {
       steps {
         script {
         sh script: """
-                   sudo su -
                    yum install python37 -y
                    yum install python-pip -y
                    yum install git -y
@@ -28,17 +27,17 @@ pipeline {
     }
     stage('Validate') {
       steps {
-        sh 'custodian validate cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml'
+        sh 'custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
       }
     }
     stage('dryrun') {
       steps {
-        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml --dryrun'
+        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml --dryrun'
       }
     }
     stage('run') {
       steps {
-        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/aebs-volume-delete-unattached.yml'
+        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
       }
     }
     // stage('clean-old-functions') {
