@@ -10,9 +10,9 @@ pipeline {
       steps {
         script {
         sh script: """
-                  sudo  yum install python37 -y && sudo yum install python-pip -y && sudo yum install git -y
-                   pip install botocore –upgrade
-                   pip install boto3 –upgrade
+                  sudo  yum install python37 -y && sudo yum install python3-pip -y && sudo yum install git -y
+                   pip3 install botocore –upgrade
+                   pip3 install boto3 –upgrade
                    git clone https://github.com/capitalone/cloud-custodian
                    cd cloud-custodian
                    make install
