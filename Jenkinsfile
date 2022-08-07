@@ -18,10 +18,9 @@ pipeline {
                    cd cloud-custodian
                    #make install
                    #cd tools/c7n_org
-                   /home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
-                   source my_venv activate
-                   /home/ec2-user/venvs/my_venv custodian -h
-                   deactivate
+                   #/home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
+                   #source my_venv activate
+                    custodian -h
                    """
         }
       }
@@ -29,8 +28,7 @@ pipeline {
     stage('Validate') {
       steps {
         sh """
-         source my_venv activate
-        /home/ec2-user/venvs/my_venv custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml
+        custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml
         """
       }
     }
