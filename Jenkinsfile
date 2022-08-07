@@ -47,12 +47,18 @@ pipeline {
     }
     stage('dryrun') {
       steps {
-        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml --dryrun'
+        sh """
+        source custodian/bin/activate
+        c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml --dryrun
+        """
       }
     }
     stage('run') {
       steps {
-        sh 'c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
+        sh """
+        source custodian/bin/activate
+        c7n-org run -c account-config/poc.yml -s output -u  cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml
+        """
       }
     }
     // stage('clean-old-functions') {
