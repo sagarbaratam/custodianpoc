@@ -30,10 +30,10 @@ pipeline {
     stage('venv creation'){
       steps{
         sh"""
-         python3 -m venv custodian
-         source custodian/bin/activate
-         pip install c7n
-         pip install c7n-org
+         #python3 -m venv custodian
+         #source custodian/bin/activate
+         #pip install c7n
+         #pip install c7n-org
          """
       }
     }
