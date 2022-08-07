@@ -20,6 +20,7 @@ pipeline {
                    source bin/activate
                    cd tools/c7n_org
                    python setup.py develop
+                   custodian -h
                    """
         }
       }
