@@ -18,15 +18,15 @@ pipeline {
                    cd cloud-custodian
                    make install
                    cd tools/c7n_org
-                   $PYTHON_INTERPRETER setup.py develop
-                   $VENV_PATH custodian -h
+                   ~/venvs/my_venv/bin/python3 setup.py develop
+                   ~/venvs/my_venv custodian -h
                    """
         }
       }
     }
     stage('Validate') {
       steps {
-        sh '$VENV_PATH custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
+        sh '~/venvs/my_venv custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
       }
     }
     stage('dryrun') {
