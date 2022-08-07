@@ -33,12 +33,14 @@ pipeline {
          python3 -m venv custodian
          source custodian/bin/activate
          pip install c7n
+         pip install c7n-org
          """
       }
     }
     stage('Validate') {
       steps {
         sh """
+        source custodian/bin/activate
         custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml
         """
       }
