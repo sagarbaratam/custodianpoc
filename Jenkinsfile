@@ -10,23 +10,23 @@ pipeline {
       steps {
         script {
         sh script: """
-                  sudo  yum install python37 -y && sudo yum install python3-pip -y && sudo yum install git -y
-                   python3.7 -m pip install --upgrade pip
-                   pip3 install botocore 
-                   pip3 install boto3 
-                   git clone https://github.com/capitalone/cloud-custodian
+                  #sudo  yum install python37 -y && sudo yum install python3-pip -y && sudo yum install git -y
+                   #python3.7 -m pip install --upgrade pip
+                   #pip3 install botocore 
+                   #pip3 install boto3 
+                   #git clone https://github.com/capitalone/cloud-custodian
                    cd cloud-custodian
-                   make install
-                   cd tools/c7n_org
-                   ~/venvs/my_venv/bin/python3 setup.py develop
-                   ~/venvs/my_venv custodian -h
+                   #make install
+                   #cd tools/c7n_org
+                   #/home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
+                   /home/ec2-user/venvs/my_venv custodian -h
                    """
         }
       }
     }
     stage('Validate') {
       steps {
-        sh '~/venvs/my_venv custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
+        sh '/home/ec2-user/venvs/my_venv custodian validate cloud-c7n-policies/ec2/ebs-volume-delete-unattached.yml'
       }
     }
     stage('dryrun') {
