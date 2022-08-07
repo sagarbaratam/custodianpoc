@@ -20,6 +20,7 @@ pipeline {
                    #cd tools/c7n_org
                    #/home/ec2-user/venvs/my_venv/bin/python3 setup.py develop
                    #source my_venv activate
+                   python3 --version
                     custodian -h
                    """
         }
